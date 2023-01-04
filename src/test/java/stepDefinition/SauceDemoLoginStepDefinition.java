@@ -27,12 +27,11 @@ public class SauceDemoLoginStepDefinition extends BaseTest{
         driver = null;
     }
     @When("User input username {string} and password {string}")
-    public void userInputUsernameAndPassword(String username, String password) {
+    public void userInputUsernameAndPassword(String username, String password) throws InterruptedException {
         final By user = By.id("user-name");
         final By pass = By.id("password");
         objectModel.inputText(user, username);
         objectModel.inputText(pass, password);
-
     }
     @And("Click on the login button")
     public void clickOnTheLoginButton() {
