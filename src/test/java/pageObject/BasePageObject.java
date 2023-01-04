@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 public class BasePageObject {
     WebDriver driver;
 
@@ -21,6 +23,12 @@ public class BasePageObject {
     public WebElement find(By by){
         return driver.findElement(by);
     }
+    public List<WebElement> finds(By by){
+        return driver.findElements(by);
+    }
+    public String getTextWebElement(WebElement element){
+        return element.getText();
+    }
     public String getText(By by){
         return find(by).getText();
     }
@@ -29,5 +37,8 @@ public class BasePageObject {
     }
     public void click(By by){
         find(by).click();
+    }
+    public boolean isDisplayed(By by){
+        return find(by).isDisplayed();
     }
 }

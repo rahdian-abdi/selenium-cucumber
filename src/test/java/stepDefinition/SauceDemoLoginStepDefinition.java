@@ -12,16 +12,16 @@ import pageObject.AssertData;
 import static org.junit.Assert.*;
 
 public class SauceDemoLoginStepDefinition extends BaseTest{
-    @Before(order = 0)
+    @Before(order = 0, value = "@login")
     public void openBrowser(){
         driver.manage().window().maximize();
     }
-    @Before(order = 1)
+    @Before(order = 1, value = "@login")
     public void goToUrl(){
         String url = "https://www.saucedemo.com/";
         objectModel.goToUrl(url);
     }
-    @After
+    @After(value = "@login")
     public void closeBrowser(){
         driver.quit();
         driver = null;
@@ -44,5 +44,11 @@ public class SauceDemoLoginStepDefinition extends BaseTest{
         assertEquals(AssertData.INVENTORY_URL, objectModel.getUrl());
         String title = objectModel.getText(By.className("title"));
         assertEquals(AssertData.TITLE, title);
+    }
+
+    @Then("User will get warning message")
+    public void userWillGetWarningMessage() {
+        final By warningMessage = By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3");
+        assertTrue(objectModel.isDisplayed(warningMessage));
     }
 }
